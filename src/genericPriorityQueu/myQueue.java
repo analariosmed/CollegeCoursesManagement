@@ -1,17 +1,31 @@
 package genericPriorityQueu;
+import java.util.List;
 
-public class myQueue {
+public class myQueue<E> {
     private int front;
     private int rear;
-    private int[] myArr;
+    private E[] myArr;
     private int size; // not the size of the array but the # of elements stored in the qeue
 
-    public myQueue(int front, int rear, int[] myArr, int size) {
+    public myQueue() {
         this.front = -1;
         this.rear = -1;
-        this.myArr = new int[20];
-        this.size = 0;
+        this.myArr = (E[]) new Object[20];
     }
+
+    public myQueue(List<E> elements) {
+        this.front = -1;
+        this.rear = -1;
+        int listSize = elements.size();
+        this.myArr = (E[]) new Object[2 * listSize]; // Double the size of the list
+        this.size = 0;
+
+        // Enqueue all elements from the list to the queue
+        for (E element : elements) {
+            enqueue(element);
+        }
+    }
+
 
 
     private boolean isEmpty(){
@@ -31,7 +45,7 @@ public class myQueue {
         this.myArr = java.util.Arrays.copyOf(this.myArr, currentSize * 2);
     }
 
-    public void enqueue(int element) {
+    public void enqueue(E element) {
         if (isFull()) {
             resize();
         }
@@ -43,11 +57,11 @@ public class myQueue {
         size++;
     }
 
-    public int dequeue() {
+    public E dequeue() {
         if (isEmpty()) {
             System.out.println("Queue is empty");
         }
-        int element = myArr[front];
+        E element = myArr[front];
         if (size == 1) {
             front = rear = -1; // Reset front and rear for single element
         } else {
@@ -57,10 +71,29 @@ public class myQueue {
         return element;
     }
 
-    public int peek() {
+    public E peek() {
         if (isEmpty()) {
             System.out.println("Queue is empty");
         }
         return myArr[front];
+    }
+
+    public void displayAllElements(){
+        if (isEmpty()) {
+            System.out.println("Queue is empty");
+        } else if (front == rear) {
+            System.out.println(myArr[front]);
+        } else if (front < rear) {
+            for (int j = front; j <= rear; j++) {
+                System.out.println(myArr[j]);
+            }
+        } else {
+            for (int j=0; j <= rear; j++) {
+                System.out.println(myArr[j]);
+            }
+            for (int j=front; j < myArr.length; j++) {
+                System.out.println(myArr[j]);
+            }
+        }
     }
 }

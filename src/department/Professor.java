@@ -48,7 +48,7 @@ public class Professor implements Comparable<Professor> {
         this.seniorityLevel = seniorityLevel;
     }
 
-    public String getHiringDate() {
+    public CharSequence getHiringDate() {
         return hiringDate;
     }
 
@@ -74,15 +74,27 @@ public class Professor implements Comparable<Professor> {
 
     @Override
     public int compareTo(Professor otherProfessor) {
+
+        // Compare seniority level
         if (this.seniorityLevel > otherProfessor.seniorityLevel) {
             return 1; // This professor is more senior
         } else if (this.seniorityLevel < otherProfessor.seniorityLevel) {
             return -1; // Other professor is more senior
         } else {
-            // If seniority levels are equal, compare hiring dates
-            LocalDate thisHiringDate = LocalDate.parse(this.hiringDate);
-            LocalDate otherHiringDate = LocalDate.parse(otherProfessor.getHiringDate());
-            return thisHiringDate.compareTo(otherHiringDate);
+
+            if (this.hiringDate != null && otherProfessor.getHiringDate() != null) {
+                LocalDate thisHiringDate = LocalDate.parse(this.hiringDate);
+                LocalDate otherHiringDate = LocalDate.parse(otherProfessor.getHiringDate());
+              //  int dateComparison = thisHiringDate.compareTo(otherProfessor.getHiringDate());
+
+                // Compare hiring dates
+            //    if (dateComparison != 0) {
+             //       return dateComparison; // Earlier hiring date comes first
+            //    } else { // Hiring dates are also equal, compare IDs
+           //         return this.pId - otherProfessor.pId; // Assuming pId is int
+                }
+          //  } else {
+                throw new IllegalArgumentException("Both professors have null hiring dates!");
+            }
         }
-    }
 }
