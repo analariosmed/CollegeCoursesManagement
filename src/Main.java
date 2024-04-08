@@ -1,5 +1,6 @@
 import department.Professor;
 import genericPriorityQueu.myQueue;
+import genericPriorityQueu.myPriorityQueue;
 
 import java.util.List;
 import java.util.Set;
@@ -30,6 +31,26 @@ public class Main {
         q1.enqueue(10);
         q1.enqueue(5);
 
-        q1.displayAllElements();
+        //q1.displayAllElements();
+
+        myPriorityQueue<Integer> q2 = new myPriorityQueue<Integer>();
+        q2.enqueue(10);
+        q2.enqueue(5);
+        q2.enqueue(20);
+        q2.enqueue(15);
+        q2.enqueue(25);
+        q2.enqueue(40);
+        q2.enqueue(35);
+        q2.enqueue(30);
+
+
+        q2.dequeue();
+
+        q2.displayAllElements();
+
+        //q2.displayHigherElements(16);
+
+
+        Professor p1 = new Professor(11111, "Michelle", "Khalife", 3, "2017-23-01", <>);
     }
 }

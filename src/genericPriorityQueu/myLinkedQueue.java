@@ -20,7 +20,7 @@ public class myLinkedQueue<E> {
             }
         }
 
-        // Method to check if the queue is empty
+        // check if the queue is empty
         public boolean isEmpty() {
             return size == 0;
         }

@@ -1,38 +1,37 @@
 package genericPriorityQueu;
 import java.util.List;
 
-public class myQueue<E> {
+public class myQueue<T> {
     private int front;
     private int rear;
-    private E[] myArr;
-    private int size; // not the size of the array but the # of elements stored in the qeue
+    T[] myArr;
+    int size; // not the size of the array but the # of myArr stored in the qeue
 
     public myQueue() {
         this.front = -1;
         this.rear = -1;
-        this.myArr = (E[]) new Object[20];
+        this.myArr = (T[]) new Comparable[20];
     }
 
-    public myQueue(List<E> elements) {
+    public myQueue(List<T> myArr) {
         this.front = -1;
         this.rear = -1;
-        int listSize = elements.size();
-        this.myArr = (E[]) new Object[2 * listSize]; // Double the size of the list
+        int listSize = myArr.size();
+        this.myArr = (T[]) new Comparable[2 * listSize]; // Double the size of the list
         this.size = 0;
 
-        // Enqueue all elements from the list to the queue
-        for (E element : elements) {
+        // Enqueue all myArr from the list to the queue
+        for (T element : myArr) {
             enqueue(element);
         }
     }
-
 
 
     private boolean isEmpty(){
         return this.size == 0;
     }
 
-    private boolean isFull(){
+    boolean isFull(){
         return this.size == this.myArr.length;
     }
 
@@ -40,12 +39,23 @@ public class myQueue<E> {
         return this.size;
     }
 
-    private void resize() {
-        int currentSize = this.myArr.length;
-        this.myArr = java.util.Arrays.copyOf(this.myArr, currentSize * 2);
-    }
+    void resize() {
+        T[] tempArr = (T[]) (new Comparable[myArr.length * 2]);
+        int i = 0;
+        int j = front;
 
-    public void enqueue(E element) {
+        do {
+            tempArr[i++] = myArr[j];
+            j = (j + 1) % myArr.length;
+            rear++;
+        } while (j != front);
+
+        front = 0;
+        rear = size - 1;
+        myArr = tempArr;
+    } // order
+
+    public void enqueue(T element) {
         if (isFull()) {
             resize();
         }
@@ -57,11 +67,12 @@ public class myQueue<E> {
         size++;
     }
 
-    public E dequeue() {
+    public T dequeue() {
         if (isEmpty()) {
             System.out.println("Queue is empty");
+            return null;
         }
-        E element = myArr[front];
+        T element = myArr[front];
         if (size == 1) {
             front = rear = -1; // Reset front and rear for single element
         } else {
@@ -71,12 +82,6 @@ public class myQueue<E> {
         return element;
     }
 
-    public E peek() {
-        if (isEmpty()) {
-            System.out.println("Queue is empty");
-        }
-        return myArr[front];
-    }
 
     public void displayAllElements(){
         if (isEmpty()) {

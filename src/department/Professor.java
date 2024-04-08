@@ -11,34 +11,18 @@ public class Professor implements Comparable<Professor> {
     private double seniorityLevel;
     private String hiringDate;
     private Set<String> setOfDisciplines;
-    private List<Course> affectedCourses;
+    private List<Course> affectedCourses = null;
 
-    public Professor() {
-    }
-
-    public int getpId() {
-        return pId;
-    }
-
-    public void setpId(int pId) {
+    public Professor(int pId, String name, String lastName, double seniorityLevel, String hiringDate, Set<String> setOfDisciplines) {
         this.pId = pId;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
         this.name = name;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
         this.lastName = lastName;
+        this.seniorityLevel = seniorityLevel;
+        this.hiringDate = hiringDate;
+        this.setOfDisciplines = setOfDisciplines;
     }
+
+
 
     public double getSeniorityLevel() {
         return seniorityLevel;
@@ -48,16 +32,13 @@ public class Professor implements Comparable<Professor> {
         this.seniorityLevel = seniorityLevel;
     }
 
-    public CharSequence getHiringDate() {
-        return hiringDate;
-    }
-
-    public void setHiringDate(String hiringDate) {
-        this.hiringDate = hiringDate;
-    }
 
     public Set<String> getSetOfDisciplines() {
         return setOfDisciplines;
+    }
+
+    private String getHiringDate() {
+        return hiringDate;
     }
 
     public void setSetOfDisciplines(Set<String> setOfDisciplines) {
@@ -74,27 +55,37 @@ public class Professor implements Comparable<Professor> {
 
     @Override
     public int compareTo(Professor otherProfessor) {
-
-        // Compare seniority level
-        if (this.seniorityLevel > otherProfessor.seniorityLevel) {
-            return 1; // This professor is more senior
-        } else if (this.seniorityLevel < otherProfessor.seniorityLevel) {
-            return -1; // Other professor is more senior
-        } else {
-
-            if (this.hiringDate != null && otherProfessor.getHiringDate() != null) {
-                LocalDate thisHiringDate = LocalDate.parse(this.hiringDate);
-                LocalDate otherHiringDate = LocalDate.parse(otherProfessor.getHiringDate());
-              //  int dateComparison = thisHiringDate.compareTo(otherProfessor.getHiringDate());
-
-                // Compare hiring dates
-            //    if (dateComparison != 0) {
-             //       return dateComparison; // Earlier hiring date comes first
-            //    } else { // Hiring dates are also equal, compare IDs
-           //         return this.pId - otherProfessor.pId; // Assuming pId is int
-                }
-          //  } else {
-                throw new IllegalArgumentException("Both professors have null hiring dates!");
+        if (this.equals(otherProfessor))
+            return 0;
+        if (this.seniorityLevel > otherProfessor.seniorityLevel)
+            return 1;
+        else if (this.seniorityLevel == otherProfessor.seniorityLevel) {
+            LocalDate thisHiringDate = LocalDate.parse(this.hiringDate);
+            LocalDate otherHiringDate = LocalDate.parse(otherProfessor.getHiringDate());
+            int dateComparison = thisHiringDate.compareTo(otherHiringDate);
+            if (dateComparison < 0) //if is 0 is because is smaller than the other
+                return 1;
+            else if (dateComparison > 0)
+                return -1;
+            else {
+                if (this.pId < otherProfessor.pId)
+                    return 1;
+                else
+                    return -1;
             }
-        }
+        } else
+            throw new IllegalArgumentException("Professor have null values!");
+    }///tyr catch for null values, just the ones we can taste
+
+
+
+    public boolean canProfessorTeachCourse(Professor professor, String courseId) {
+        ///get the course from the hasmap of the department
+        Course course = Department.getCourseMap().get(courseId);
+        ///this course is part of which discipline
+        String discipline = course.getDiscipline();
+        //does my set of discipline contains the discipline of the course
+        return professor.getSetOfDisciplines().contains(discipline);
+    }
 }
+
