@@ -1,14 +1,41 @@
-import department.Professor;
-import genericPriorityQueu.myQueue;
-import genericPriorityQueu.myPriorityQueue;
+package com.lasalle;
 
-import java.util.List;
-import java.util.Set;
+import com.lasalle.genericPriorityQueue.myPriorityQueue;
+import com.lasalle.genericPriorityQueue.myQueue;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
         myQueue q1 = new myQueue();
@@ -51,6 +78,6 @@ public class Main {
         //q2.displayHigherElements(16);
 
 
-        Professor p1 = new Professor(11111, "Michelle", "Khalife", 3, "2017-23-01", <>);
+//        Professor p1 = new Professor(11111, "Michelle", "Khalife", 3, "2017-23-01", <>);
     }
 }

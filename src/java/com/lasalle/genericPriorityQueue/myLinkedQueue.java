@@ -1,4 +1,4 @@
-package genericPriorityQueu;
+package com.lasalle.genericPriorityQueue;
 import java.util.List;
 import java.util.NoSuchElementException;
 

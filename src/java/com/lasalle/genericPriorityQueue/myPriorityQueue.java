@@ -1,4 +1,4 @@
-package genericPriorityQueu;
+package com.lasalle.genericPriorityQueue;
 
 public class myPriorityQueue<T extends Comparable<T>> extends myQueue<T> {
 //public class myPriorityQueue<T> extends myQueue<T> {

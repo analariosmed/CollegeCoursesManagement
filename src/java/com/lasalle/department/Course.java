@@ -1,4 +1,4 @@
-package department;
+package com.lasalle.department;
 
 public class Course {
     private int id;

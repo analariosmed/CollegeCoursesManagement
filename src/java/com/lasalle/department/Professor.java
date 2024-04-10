@@ -1,4 +1,4 @@
-package department;
+package com.lasalle.department;
 
 import java.util.List;
 import java.util.Set;
@@ -80,7 +80,7 @@ public class Professor implements Comparable<Professor> {
 
 
     public boolean canProfessorTeachCourse(Professor professor, String courseId) {
-        ///get the course from the hasmap of the department
+        ///get the course from the hasmap of the java.com.lasalle.department
         Course course = Department.getCourseMap().get(courseId);
         ///this course is part of which discipline
         String discipline = course.getDiscipline();
