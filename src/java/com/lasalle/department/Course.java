@@ -1,15 +1,20 @@
 package com.lasalle.department;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+
 public class Course {
-    private int id;
+    private String id;
     private String title;
     private String discipline;
     private byte numberOfHours;
     private byte numberOfGroups;
 
-    private Course(){
+    private Course() {
     }
-    public Course(int id, String title, String discipline, byte numberOfHours, byte numberOfGroups) {
+
+    public Course(String id, String title, String discipline, byte numberOfHours, byte numberOfGroups) {
         this.id = id;
         this.title = title;
         this.discipline = discipline;
@@ -17,7 +22,7 @@ public class Course {
         this.numberOfGroups = numberOfGroups;
     }
 
-    public Course(Course c){
+    public Course(Course c) {
         this.id = c.id;
         this.title = c.title;
         this.discipline = c.discipline;
@@ -25,11 +30,11 @@ public class Course {
         this.numberOfGroups = c.numberOfGroups;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -64,4 +69,8 @@ public class Course {
     public void setNumberOfGroups(byte numberOfGroups) {
         this.numberOfGroups = numberOfGroups;
     }
+
+
+
+
 }

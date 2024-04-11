@@ -4,19 +4,19 @@ import java.util.List;
 import java.util.Set;
 import java.time.LocalDate;
 
+
+
 public class Professor implements Comparable<Professor> {
     private int pId;
     private String name;
-    private String lastName;
     private double seniorityLevel;
-    private String hiringDate;
+    private LocalDate hiringDate;
     private Set<String> setOfDisciplines;
-    private List<Course> affectedCourses = null;
+    private List<Course> affectedCourses= null ;
 
-    public Professor(int pId, String name, String lastName, double seniorityLevel, String hiringDate, Set<String> setOfDisciplines) {
+    public Professor(int pId, String name, double seniorityLevel, LocalDate hiringDate, Set<String> setOfDisciplines) {
         this.pId = pId;
         this.name = name;
-        this.lastName = lastName;
         this.seniorityLevel = seniorityLevel;
         this.hiringDate = hiringDate;
         this.setOfDisciplines = setOfDisciplines;
@@ -37,7 +37,7 @@ public class Professor implements Comparable<Professor> {
         return setOfDisciplines;
     }
 
-    private String getHiringDate() {
+    private LocalDate getHiringDate() {
         return hiringDate;
     }
 
@@ -60,8 +60,8 @@ public class Professor implements Comparable<Professor> {
         if (this.seniorityLevel > otherProfessor.seniorityLevel)
             return 1;
         else if (this.seniorityLevel == otherProfessor.seniorityLevel) {
-            LocalDate thisHiringDate = LocalDate.parse(this.hiringDate);
-            LocalDate otherHiringDate = LocalDate.parse(otherProfessor.getHiringDate());
+            LocalDate thisHiringDate = this.hiringDate;
+            LocalDate otherHiringDate = otherProfessor.getHiringDate();
             int dateComparison = thisHiringDate.compareTo(otherHiringDate);
             if (dateComparison < 0) //if is 0 is because is smaller than the other
                 return 1;
@@ -79,13 +79,6 @@ public class Professor implements Comparable<Professor> {
 
 
 
-    public boolean canProfessorTeachCourse(Professor professor, String courseId) {
-        ///get the course from the hasmap of the java.com.lasalle.department
-        Course course = Department.getCourseMap().get(courseId);
-        ///this course is part of which discipline
-        String discipline = course.getDiscipline();
-        //does my set of discipline contains the discipline of the course
-        return professor.getSetOfDisciplines().contains(discipline);
-    }
+
 }
 
