@@ -77,8 +77,16 @@ public class Professor implements Comparable<Professor> {
             throw new IllegalArgumentException("Professor have null values!");
     }///tyr catch for null values, just the ones we can taste
 
+    @Override
+    public String toString() {
+        return "Professor{" +
+                "pId=" + pId +
+                ", name='" + name + '\'' +
+                ", seniorityLevel=" + seniorityLevel +
+                ", hiringDate=" + hiringDate +
+                ", setOfDisciplines=" + setOfDisciplines +
+                '}';
 
-
-
+    }
 }
 

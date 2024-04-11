@@ -36,7 +36,7 @@ public class Department {
 
 
         public void readProfessorsFromFile(String filePath) {
-            ArrayList<Professor> listOfProfs = new ArrayList<>();
+           // ArrayList<Professor> listOfProfs = new ArrayList<>();
             PriorityQueue<Professor> profProcessingQueue = new PriorityQueue<>();
             Set<String> myProfDisciplines = new HashSet<>();
 
@@ -49,7 +49,7 @@ public class Department {
                     Professor prof = new Professor(Integer.parseInt(parts[0].trim()), parts[1].trim(),
                             Double.parseDouble(parts[2].trim()), LocalDate.parse(parts[3].trim(), formatter),
                             myProfDisciplines);
-                    listOfProfs.add(prof);
+                    this.listOfProfs.add(prof);
                     profProcessingQueue.add(prof);
                     myProfDisciplines.add(parts[4]);
                 }
@@ -60,18 +60,29 @@ public class Department {
         }
 
 
-        public void readCoursesFromFile(String filePath){
-        try {
-            BufferedReader reader = new BufferedReader(new FileReader(filePath));
-            String line;
-            while ((line = reader.readLine()) != null) {
-                String[] parts = line.split(":");
-                Course course = new Course(parts[0], parts[1], parts[2], Byte.parseByte(parts[3].trim()), Byte.parseByte(parts[5].trim()));
-                getCourseMap().put(parts[0], course);
+        public void readCoursesFromFile(String filePath) {
+            try {
+                BufferedReader reader = new BufferedReader(new FileReader(filePath));
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    String[] parts = line.split(":");
+                    Course course = new Course(parts[0], parts[1], parts[2], Byte.parseByte(parts[3].trim()), Byte.parseByte(parts[5].trim()));
+                    getCourseMap().put(parts[0], course);
+                }
+                reader.close();
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-            reader.close();
-        } catch (IOException e) {
-            e.printStackTrace();
         }
+
+            public void displayProfessors() {
+                for (Professor professor : listOfProfs) {
+                    System.out.println(professor);
+                }
     }
-}
+
+
+    }
+
+
+
