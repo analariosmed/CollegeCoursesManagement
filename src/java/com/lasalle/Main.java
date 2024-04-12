@@ -2,6 +2,8 @@ package com.lasalle;
 
 import com.lasalle.department.Department;
 import com.lasalle.department.Professor;
+import com.lasalle.genericPriorityQueue.myPriorityQueue;
+
 import java.util.ArrayList;
 
 
@@ -16,6 +18,13 @@ public class Main {
         computerScience.readCoursesFromFile("src/resources/courses_f22.txt.csv");
         computerScience.displayProfessors();
         computerScience.displayCourseMap();
+        computerScience.readProfessorSelection("src/resources/5999_selection.txt");
+        computerScience.displayProfessorsSelection();
+
+
+
+
+
 
 
 

@@ -1,5 +1,8 @@
 package com.lasalle.department;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.List;
 import java.util.Set;
 import java.time.LocalDate;
@@ -81,12 +84,13 @@ public class Professor implements Comparable<Professor> {
     public String toString() {
         return "Professor{" +
                 "pId=" + pId +
-                ", name='" + name + '\'' +
+                ", name='" + name  +
                 ", seniorityLevel=" + seniorityLevel +
                 ", hiringDate=" + hiringDate +
                 ", setOfDisciplines=" + setOfDisciplines +
                 '}';
 
     }
+
 }
 

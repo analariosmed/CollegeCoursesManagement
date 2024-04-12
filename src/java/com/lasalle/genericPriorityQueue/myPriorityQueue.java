@@ -17,6 +17,10 @@ public class myPriorityQueue<T extends Comparable<T>> extends myQueue<T> {
 
     }
 
+    public boolean isEmpty(){
+        return this.size == 0;
+    }
+
     public void displayElement(T element) {
         for (int i = 0; i < size; i++) {
             if (myArr[i] == element) {

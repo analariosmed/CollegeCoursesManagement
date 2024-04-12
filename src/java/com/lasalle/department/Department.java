@@ -1,6 +1,8 @@
 package com.lasalle.department;
 
 
+import com.lasalle.genericPriorityQueue.myPriorityQueue;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -12,6 +14,7 @@ public class Department {
 
     private HashMap<String, Course> courseMap; //q valor es el string
     private ArrayList<Professor> listOfProfs;
+    public myPriorityQueue<Professor> professorPriorityQueue = new myPriorityQueue<>();
 
     public Department(ArrayList<Professor> listOfProfs) {
         this.courseMap = new HashMap<>(); //agregation
@@ -61,8 +64,6 @@ public class Department {
             }
         }
 
-
-
         public void readCoursesFromFile(String filePath) {
 
             try {
@@ -90,9 +91,54 @@ public class Department {
         }
     }
 
+    public void processProfessors() {
+        for (Professor professor : this.listOfProfs) {
+            professorPriorityQueue.enqueue(professor);
+        }
+    }
+
+    public void displayProfessorsWithPriority() {
+        for (Professor professor : listOfProfs) {
+            System.out.println(professor);
+        }
+    }
+
+    public void readProfessorSelection(String filePath) {
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader(filePath));
+            String requestedHoursLine = reader.readLine();
+            int requestedHours = Integer.parseInt(requestedHoursLine.trim());
+            String courseLine;
+            while ((courseLine = reader.readLine()) != null) {
+                // Split the line into course ID and group
+                String[] parts = courseLine.split(", ");
+                String courseId = parts[0].trim();
+                int group = Integer.parseInt(parts[1].trim());
+            }
+
+            reader.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void displayProfessorsSelection() {
+        while (!professorPriorityQueue.isEmpty()) {
+            Professor professor = professorPriorityQueue.dequeue();
+            System.out.println(professor);
+        }
+    }
 
 
     }
+
+
+
+
+
+
+
+
 
 
 
