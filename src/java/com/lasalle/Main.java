@@ -15,6 +15,9 @@ public class Main {
         computerScience.readProfessorsFromFile("src/resources/profs.txt");
         computerScience.readCoursesFromFile("src/resources/courses_f22.txt.csv");
         computerScience.displayProfessors();
+        computerScience.displayCourses();
+
+
 
 
 
