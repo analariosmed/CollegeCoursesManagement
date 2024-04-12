@@ -16,10 +16,19 @@ public class Main {
 
         computerScience.readProfessorsFromFile("src/resources/profs.txt");
         computerScience.readCoursesFromFile("src/resources/courses_f22.txt.csv");
-        computerScience.displayProfessors();
+
+        System.out.println("\n\n Display Computer Science List Of professors: ");
+        computerScience.displayListOfProfessors();
+
+
+        System.out.println("\n\n Display Computer Science CourseMap: ");
         computerScience.displayCourseMap();
         computerScience.readProfessorSelection("src/resources/5999_selection.txt");
-        computerScience.displayProfessorsSelection();
+
+
+        System.out.println("\n\nProfessors before processing: ");
+        computerScience.processProfessors();
+
 
 
 

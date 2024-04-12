@@ -80,7 +80,7 @@ public class Department {
             }
         }
 
-            public void displayProfessors() {
+            public void displayListOfProfessors() {
                 for (Professor professor : listOfProfs) {
                     System.out.println(professor);
                 }
@@ -93,15 +93,15 @@ public class Department {
 
     public void processProfessors() {
         for (Professor professor : this.listOfProfs) {
-            professorPriorityQueue.enqueue(professor);
+            this.professorPriorityQueue.enqueue(professor);
         }
-    }
 
-    public void displayProfessorsWithPriority() {
-        for (Professor professor : listOfProfs) {
+        while (!this.professorPriorityQueue.isEmpty()) {
+            Professor professor = this.professorPriorityQueue.dequeue();
             System.out.println(professor);
         }
     }
+
 
     public void readProfessorSelection(String filePath) {
         try {
@@ -122,15 +122,10 @@ public class Department {
         }
     }
 
-    public void displayProfessorsSelection() {
-        while (!professorPriorityQueue.isEmpty()) {
-            Professor professor = professorPriorityQueue.dequeue();
-            System.out.println(professor);
-        }
     }
 
 
-    }
+
 
 
 
