@@ -64,6 +64,7 @@ public class Department {
 
 
         public void readCoursesFromFile(String filePath) {
+
             try {
                 BufferedReader reader = new BufferedReader(new FileReader(filePath));
                 String line;
@@ -83,11 +84,12 @@ public class Department {
                     System.out.println(professor);
                 }
     }
-    public void displayCourses() {
-        for (Course course : courseMap.values()) {
-            System.out.println(course);
+    public void displayCourseMap() {
+        for (Map.Entry<String, Course> entry : courseMap.entrySet()) {
+            System.out.println("Key: " + entry.getKey() + ", Value: " + entry.getValue());
         }
     }
+
 
 
     }

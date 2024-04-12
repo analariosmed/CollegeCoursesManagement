@@ -70,6 +70,11 @@ public class Course {
         this.numberOfGroups = numberOfGroups;
     }
 
+    @Override
+    public String toString() {
+        return "Course ID: " + id + ", Title: " + title + ", Discipline: " + discipline + ", Number of Hours: " + numberOfHours + ", Number of Groups: " + numberOfGroups;
+    }
+
 
 
 
