@@ -23,10 +23,15 @@ public class Professor implements Comparable<Professor> {
         this.seniorityLevel = seniorityLevel;
         this.hiringDate = hiringDate;
         this.setOfDisciplines = setOfDisciplines;
+
     }
 
+    public Professor(){}
 
 
+    public int getpId() {
+        return pId;
+    }
     public double getSeniorityLevel() {
         return seniorityLevel;
     }
@@ -88,6 +93,7 @@ public class Professor implements Comparable<Professor> {
                 ", seniorityLevel=" + seniorityLevel +
                 ", hiringDate=" + hiringDate +
                 ", setOfDisciplines=" + setOfDisciplines +
+                ", affectedCourses=" + affectedCourses +
                 '}';
 
     }

@@ -1,9 +1,8 @@
 package com.lasalle.department;
 
-
 import com.lasalle.genericPriorityQueue.myPriorityQueue;
-
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.time.LocalDate;
@@ -16,6 +15,9 @@ public class Department {
     private ArrayList<Professor> listOfProfs;
     public myPriorityQueue<Professor> professorPriorityQueue = new myPriorityQueue<>();
 
+    public int totalHours;
+
+
     public Department(ArrayList<Professor> listOfProfs) {
         this.courseMap = new HashMap<>(); //agregation
         this.listOfProfs = listOfProfs;  //
@@ -25,104 +27,68 @@ public class Department {
         return courseMap;
     }
 
-    public void setCourseMap(HashMap<String, Course> courseMap) {
-        this.courseMap = courseMap;
-    }
-
-    public ArrayList<Professor> getListOfProfs() {
-        return listOfProfs;
-    }
-
-    public void setListOfProfs(ArrayList<Professor> listOfProfs) {
-        this.listOfProfs = listOfProfs;
-    }
 
 
-        public void readProfessorsFromFile(String filePath) {
-            ArrayList<Professor> listOfProfs = new ArrayList<>();
 
-            try {
-
-                BufferedReader reader = new BufferedReader(new FileReader(filePath));
-                String line;
-                while ((line = reader.readLine()) != null) {
-                    Set<String> myProfDisciplines = new HashSet<>();
-                    String[] parts = line.split(":");
-                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d-M-yyyy");
-                    String[] disciplines = parts[4].split(",");
-                    for (String discipline : disciplines) {
-                        myProfDisciplines.add(discipline.trim());
-                    }
-                    Professor prof = new Professor(Integer.parseInt(parts[0].trim()), parts[1].trim(),
-                            Double.parseDouble(parts[2].trim()), LocalDate.parse(parts[3].trim(), formatter),
-                            myProfDisciplines);
-                    this.listOfProfs.add(prof);
-                }
-                reader.close();
-            } catch (IOException e) {
-                e.printStackTrace();
+//
+//
+    public void assignToProfessors(LinkedHashMap<String, Integer> courseSelection, ArrayList<Professor> professorsPrior) {
+        for (Professor professor : professorsPrior) {
+            read the pid to read the professorid_selection.txt file
+            String filePath = "src/resources/" + professor.getpId() + "_selection.txt";
+            File file = new File(filePath);
+            //validate if the file exist or not
+            if (!file.exists()) {
+                continue;
             }
-        }
-
-        public void readCoursesFromFile(String filePath) {
-
-            try {
-                BufferedReader reader = new BufferedReader(new FileReader(filePath));
-                String line;
-                while ((line = reader.readLine()) != null) {
-                    String[] parts = line.split(":");
-                    Course course = new Course(parts[0], parts[1], parts[2], Byte.parseByte(parts[3].trim()), Byte.parseByte(parts[5].trim()));
-                    this.getCourseMap().put(parts[0], course);
-                }
-                reader.close();
-            } catch (IOException e) {
-                e.printStackTrace();
+            //read the file
+            LinkedHashMap<String, Integer> crsSelection = readProfessorSelection(filePath);
+            //iterate over the map to get the total hours from the professors
+            for (Map.Entry<String, Integer> entry : crsSelection.entrySet()) {
+                //take the first line and assign it to the totalHours
+                totalHours = entry.getValue();
+                break;
             }
-        }
-
-            public void displayListOfProfessors() {
-                for (Professor professor : listOfProfs) {
-                    System.out.println(professor);
+            //iterate over the map ad concatenate the values
+            for (Map.Entry<String, Integer> entry2 : courseSelection.entrySet()) {
+                //take the courseId and the groups
+                String courseId = entry2.getKey();
+                int requestedGroups = entry2.getValue();
+                //take the course
+                Course course = courseMap.get(courseId);
+                //if the course is null or the number of groups is 0 continue
+                if (course == null || course.getNumberOfGroups() == 0) {
+                    continue;
                 }
-    }
-    public void displayCourseMap() {
-        for (Map.Entry<String, Course> entry : courseMap.entrySet()) {
-            System.out.println("Key: " + entry.getKey() + ", Value: " + entry.getValue());
+//                //take the discipline
+//                String discipline = course.getDiscipline();
+//                //if the discipline is not in the set of disciplines continue
+//                if (!professor.getSetOfDisciplines().contains(discipline)) {
+//                    continue;
+//                }
+//                //take the hrs from the course file dived it by 16 and assigned to the variable hrs AvaialblePerWeek
+//                int hrsAvailablePerWeek = course.getNumberOfHours() /16;
+//                //if the total hours is less than the hrsAvailablePerWeek continue
+//                if (totalHours > hrsAvailablePerWeek) {
+//                    continue;
+//                }
+//                professor.setAffectedCourses.add(new Course(c));
+//
+//
+
+
         }
     }
-
-    public void processProfessors() {
-        for (Professor professor : this.listOfProfs) {
-            this.professorPriorityQueue.enqueue(professor);
-        }
-
-        while (!this.professorPriorityQueue.isEmpty()) {
-            Professor professor = this.professorPriorityQueue.dequeue();
-            System.out.println(professor);
-        }
-    }
+}
 
 
-    public void readProfessorSelection(String filePath) {
-        try {
-            BufferedReader reader = new BufferedReader(new FileReader(filePath));
-            String requestedHoursLine = reader.readLine();
-            int requestedHours = Integer.parseInt(requestedHoursLine.trim());
-            String courseLine;
-            while ((courseLine = reader.readLine()) != null) {
-                // Split the line into course ID and group
-                String[] parts = courseLine.split(", ");
-                String courseId = parts[0].trim();
-                int group = Integer.parseInt(parts[1].trim());
-            }
 
-            reader.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 
-    }
+
+
+
+
+
 
 
 

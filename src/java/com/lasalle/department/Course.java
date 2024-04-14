@@ -11,7 +11,7 @@ public class Course {
     private byte numberOfHours;
     private byte numberOfGroups;
 
-    private Course() {
+    public Course() {
     }
 
     public Course(String id, String title, String discipline, byte numberOfHours, byte numberOfGroups) {
