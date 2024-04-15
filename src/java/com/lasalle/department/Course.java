@@ -1,8 +1,5 @@
 package com.lasalle.department;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
 
 public class Course {
     private String id;
@@ -34,33 +31,16 @@ public class Course {
         return id;
     }
 
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
 
     public String getDiscipline() {
         return discipline;
     }
 
-    public void setDiscipline(String discipline) {
-        this.discipline = discipline;
-    }
 
     public byte getNumberOfHours() {
         return numberOfHours;
     }
 
-    public void setNumberOfHours(byte numberOfHours) {
-        this.numberOfHours = numberOfHours;
-    }
 
     public byte getNumberOfGroups() {
         return numberOfGroups;
@@ -70,12 +50,9 @@ public class Course {
         this.numberOfGroups = numberOfGroups;
     }
 
+
     @Override
     public String toString() {
-        return "Course ID: " + id + ", Title: " + title + ", Discipline: " + discipline + ", Number of Hours: " + numberOfHours + ", Number of Groups: " + numberOfGroups;
+        return "\nCourse ID: " + id + " Number of Groups: " + numberOfGroups;
     }
-
-
-
-
 }

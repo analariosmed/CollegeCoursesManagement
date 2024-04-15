@@ -1,19 +1,20 @@
 package com.lasalle.genericPriorityQueue;
+
 import java.util.List;
 
-public class myQueue<T> {
+public class MyQueue<T> {
     private int front;
     private int rear;
     T[] myArr;
     int size; // not the size of the array but the # of myArr stored in the qeue
 
-    public myQueue() {
+    public MyQueue() {
         this.front = -1;
         this.rear = -1;
         this.myArr = (T[]) new Comparable[20];
     }
 
-    public myQueue(List<T> myArr) {
+    public MyQueue(List<T> myArr) {
         this.front = -1;
         this.rear = -1;
         int listSize = myArr.size();
@@ -27,15 +28,15 @@ public class myQueue<T> {
     }
 
 
-    private boolean isEmpty(){
+    private boolean isEmpty() {
         return this.size == 0;
     }
 
-    boolean isFull(){
+    boolean isFull() {
         return this.size == this.myArr.length;
     }
 
-    private int getSize(){
+    private int getSize() {
         return this.size;
     }
 
@@ -82,8 +83,15 @@ public class myQueue<T> {
         return element;
     }
 
+    public T peek() {
+        if (isEmpty()) {
+            System.out.println("Queue is empty");
+        }
+        return myArr[front];
+    }
 
-    public void displayAllElements(){
+
+    public void displayAllElements() {
         if (isEmpty()) {
             System.out.println("Queue is empty");
         } else if (front == rear) {
@@ -93,10 +101,10 @@ public class myQueue<T> {
                 System.out.println(myArr[j]);
             }
         } else {
-            for (int j=0; j <= rear; j++) {
+            for (int j = 0; j <= rear; j++) {
                 System.out.println(myArr[j]);
             }
-            for (int j=front; j < myArr.length; j++) {
+            for (int j = front; j < myArr.length; j++) {
                 System.out.println(myArr[j]);
             }
         }

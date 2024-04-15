@@ -1,6 +1,6 @@
 package com.lasalle.genericPriorityQueue;
 
-public class myPriorityQueue<T extends Comparable<T>> extends myQueue<T> {
+public class MyPriorityQueue<T extends Comparable<T>> extends MyQueue<T> {
 //public class myPriorityQueue<T> extends myQueue<T> {
 
     @Override
@@ -8,16 +8,16 @@ public class myPriorityQueue<T extends Comparable<T>> extends myQueue<T> {
         super.enqueue(element);
         // only move here
 
-        int i = size-1;//rear?
-        while (i > 0 && element.compareTo(myArr[i-1])>0) {
-            myArr[i] = myArr[i-1];
+        int i = size - 1;//rear?
+        while (i > 0 && element.compareTo(myArr[i - 1]) > 0) {
+            myArr[i] = myArr[i - 1];
             i--;
         }
         myArr[i] = element;
 
     }
 
-    public boolean isEmpty(){
+    public boolean isEmpty() {
         return this.size == 0;
     }
 
@@ -30,6 +30,7 @@ public class myPriorityQueue<T extends Comparable<T>> extends myQueue<T> {
         }
         System.out.println("Element not found");
     }
+
 
     public void displayHigherElements(T element) {
         for (int i = 0; i < size; i++) {

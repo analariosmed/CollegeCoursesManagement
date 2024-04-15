@@ -1,12 +1,9 @@
 package com.lasalle.department;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.time.LocalDate;
-
 
 
 public class Professor implements Comparable<Professor> {
@@ -15,7 +12,7 @@ public class Professor implements Comparable<Professor> {
     private double seniorityLevel;
     private LocalDate hiringDate;
     private Set<String> setOfDisciplines;
-    private List<Course> affectedCourses= null ;
+    private List<Course> affectedCourses = new ArrayList<>();
 
     public Professor(int pId, String name, double seniorityLevel, LocalDate hiringDate, Set<String> setOfDisciplines) {
         this.pId = pId;
@@ -26,18 +23,12 @@ public class Professor implements Comparable<Professor> {
 
     }
 
-    public Professor(){}
+    public Professor() {
+    }
 
 
-    public int getpId() {
+    public int getProfessorId() {
         return pId;
-    }
-    public double getSeniorityLevel() {
-        return seniorityLevel;
-    }
-
-    public void setSeniorityLevel(double seniorityLevel) {
-        this.seniorityLevel = seniorityLevel;
     }
 
 
@@ -49,17 +40,11 @@ public class Professor implements Comparable<Professor> {
         return hiringDate;
     }
 
-    public void setSetOfDisciplines(Set<String> setOfDisciplines) {
-        this.setOfDisciplines = setOfDisciplines;
-    }
 
     public List<Course> getAffectedCourses() {
         return affectedCourses;
     }
 
-    public void setAffectedCourses(List<Course> affectedCourses) {
-        this.affectedCourses = affectedCourses;
-    }
 
     @Override
     public int compareTo(Professor otherProfessor) {
@@ -89,13 +74,12 @@ public class Professor implements Comparable<Professor> {
     public String toString() {
         return "Professor{" +
                 "pId=" + pId +
-                ", name='" + name  +
+                ", name='" + name +
                 ", seniorityLevel=" + seniorityLevel +
                 ", hiringDate=" + hiringDate +
                 ", setOfDisciplines=" + setOfDisciplines +
                 ", affectedCourses=" + affectedCourses +
                 '}';
-
     }
 
 }
