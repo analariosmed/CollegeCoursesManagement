@@ -1,5 +1,7 @@
 package com.lasalle.department;
-
+/**
+ * Represents a course offered by a department.
+ */
 
 public class Course {
     private String id;
@@ -19,6 +21,11 @@ public class Course {
         this.numberOfGroups = numberOfGroups;
     }
 
+    /**
+     * Constructs a copy of another Course object.
+     *
+     * @param c The Course object to copy.
+     */
     public Course(Course c) {
         this.id = c.id;
         this.title = c.title;
@@ -46,6 +53,11 @@ public class Course {
         return numberOfGroups;
     }
 
+    /**
+     * Sets the number of groups (sections) offered for the course.
+     *
+     * @param numberOfGroups The new number of groups for the course.
+     */
     public void setNumberOfGroups(byte numberOfGroups) {
         this.numberOfGroups = numberOfGroups;
     }
