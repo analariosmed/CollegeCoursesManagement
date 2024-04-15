@@ -5,6 +5,10 @@ import java.util.List;
 import java.util.Set;
 import java.time.LocalDate;
 
+/**
+ * Represents a Professor with an ID, name, seniority level, hiring date, set of disciplines, and list of affected courses.
+ * This class implements Comparable interface to compare professors based on their seniority level, hiring date and professor ID.
+ */
 
 public class Professor implements Comparable<Professor> {
     private int pId;
@@ -12,6 +16,9 @@ public class Professor implements Comparable<Professor> {
     private double seniorityLevel;
     private LocalDate hiringDate;
     private Set<String> setOfDisciplines;
+    /**
+     * List of courses that the Professor is currently teaching.
+     */
     private List<Course> affectedCourses = new ArrayList<>();
 
     public Professor(int pId, String name, double seniorityLevel, LocalDate hiringDate, Set<String> setOfDisciplines) {
@@ -31,7 +38,11 @@ public class Professor implements Comparable<Professor> {
         return pId;
     }
 
-
+    /**
+     * Returns the set of disciplines that the Professor is qualified to teach.
+     *
+     * @return The set of disciplines that the Professor is qualified to teach.
+     */
     public Set<String> getSetOfDisciplines() {
         return setOfDisciplines;
     }
@@ -45,7 +56,13 @@ public class Professor implements Comparable<Professor> {
         return affectedCourses;
     }
 
-
+    /**
+     * Compares this Professor with the specified Professor for order.
+     *
+     * @param otherProfessor The Professor to be compared.
+     * @return A negative integer, zero, or a positive integer as this Professor has priority over the specified Professor.
+     * @throws IllegalArgumentException if the Professor has null values.
+     */
     @Override
     public int compareTo(Professor otherProfessor) {
         if (this.equals(otherProfessor))
@@ -70,6 +87,10 @@ public class Professor implements Comparable<Professor> {
             throw new IllegalArgumentException("Professor have null values!");
     }///tyr catch for null values, just the ones we can taste
 
+
+/**
+ * Returns a string representation of the Professor.
+ */
     @Override
     public String toString() {
         return "Professor{" +

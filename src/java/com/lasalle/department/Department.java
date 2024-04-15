@@ -8,6 +8,9 @@ import java.util.*;
 
 public class Department {
 
+    /**
+     * Fields for Department class, set MAx_Hours to 30(project requirement)
+     */
     public static final int MAX_HOURS = 30;
     private HashMap<String, Course> courseMap; //q valor es el string
     private ArrayList<Professor> listOfProfs;
