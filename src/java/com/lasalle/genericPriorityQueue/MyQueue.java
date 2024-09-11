@@ -14,20 +14,31 @@ public class MyQueue<T> {
         this.myArr = (T[]) new Comparable[20];
     }
 
-    public MyQueue(List<T> myArr) {
+//    public MyQueue(List<T> myArr) {
+//        this.front = -1;
+//        this.rear = -1;
+//        int listSize = myArr.size();
+//        this.myArr = (T[]) new Comparable[2 * listSize]; // Double the size of the list
+//        this.size = 0;
+//
+//        // Enqueue all myArr from the list to the queue
+//        for (T element : myArr) {
+//            enqueue(element);
+//        }
+//    }
+
+    public MyQueue(List<T> aList) {
         this.front = -1;
         this.rear = -1;
-        int listSize = myArr.size();
+        int listSize = aList.size();
         this.myArr = (T[]) new Comparable[2 * listSize]; // Double the size of the list
         this.size = 0;
 
         // Enqueue all myArr from the list to the queue
-        for (T element : myArr) {
+        for (T element : aList) {
             enqueue(element);
         }
     }
-
-
     private boolean isEmpty() {
         return this.size == 0;
     }

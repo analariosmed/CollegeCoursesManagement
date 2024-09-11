@@ -19,7 +19,7 @@ public class Professor implements Comparable<Professor> {
     /**
      * List of courses that the Professor is currently teaching.
      */
-    private List<Course> affectedCourses = new ArrayList<>();
+    private List<Course> affectedCourses;
 
     public Professor(int pId, String name, double seniorityLevel, LocalDate hiringDate, Set<String> setOfDisciplines) {
         this.pId = pId;
@@ -27,6 +27,7 @@ public class Professor implements Comparable<Professor> {
         this.seniorityLevel = seniorityLevel;
         this.hiringDate = hiringDate;
         this.setOfDisciplines = setOfDisciplines;
+        this.affectedCourses = new ArrayList<>();
 
     }
 
@@ -84,7 +85,7 @@ public class Professor implements Comparable<Professor> {
                     return -1;
             }
         } else
-            throw new IllegalArgumentException("Professor have null values!");
+           return -1;
     }///tyr catch for null values, just the ones we can taste
 
 

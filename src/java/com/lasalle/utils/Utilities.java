@@ -20,8 +20,8 @@ public class Utilities {
             while ((line = reader.readLine()) != null) {
                 Set<String> myProfDisciplines = new HashSet<>();
                 String[] parts = line.split(":");
-                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d-M-yyyy");
-                String[] disciplines = parts[4].split(",");
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d-M-yyyy");// give format for index 3
+                String[] disciplines = parts[4].split(",");//array of disciplines by ,
                 for (String discipline : disciplines) {
                     myProfDisciplines.add(discipline.trim());
                 }
@@ -47,7 +47,7 @@ public class Utilities {
             while ((line = reader.readLine()) != null) {
                 String[] parts = line.split(":");
                 Course course = new Course(parts[0], parts[1], parts[2], Byte.parseByte(parts[3].trim()), Byte.parseByte(parts[5].trim()));
-                mapCourses.put(parts[0].trim(), course);
+                mapCourses.put(parts[0].trim(), course); //0 to course Id and value course for next in map
             }
             reader.close();
         } catch (IOException e) {

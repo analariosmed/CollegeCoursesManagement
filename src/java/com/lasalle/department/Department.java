@@ -15,7 +15,7 @@ public class Department {
     /**
      * A map to store courses offered by the department, where the key is the course ID (String) and the value is the corresponding Course object.
      */
-    private HashMap<String, Course> courseMap; //q valor es el string
+    private HashMap<String, Course> courseMap;
     private ArrayList<Professor> listOfProfs;
 
 
@@ -25,13 +25,10 @@ public class Department {
      * @param listOfProfs The list of professors for the department.
      */
     public Department(ArrayList<Professor> listOfProfs) {
-        this.courseMap = new HashMap<>(); //aggregation
-        this.listOfProfs = listOfProfs;  //composition
+        this.courseMap = new HashMap<>(); //composition
+        this.listOfProfs = listOfProfs;  //aggregation
     }
 
-    public HashMap<String, Course> getCourseMap() {
-        return courseMap;
-    }
 
     /**
      * Sets the course map for the department.
@@ -55,9 +52,9 @@ public class Department {
         return professorPriorityQueue;
     }
 
+
     /**
-     * Processes course selection for a professor based on information in a text file.
-     *
+     * Processes course selection for a professor based on information in a text file.*
      * This method iterates through lines in a professor selection file until the end of the file is reached or the professor's requested hours are fulfilled.
      * For each line:
      *   - Parses the course ID and number of groups requested.
@@ -103,6 +100,7 @@ public class Department {
 
 
             int hoursGaveToTeacher = 0;
+
             while (hoursGaveToTeacher < hoursRequested && reader.hasNext()) { //while() not more than total hours and is not the end of the file (prof selection)
                 System.out.println("\n\n\nhoursGaveToTeacher : " + hoursGaveToTeacher);
 
@@ -116,7 +114,8 @@ public class Department {
                     System.out.println("Course not found: " + courseIdSelected);
                     continue;
                 }
-                String courseDiscipline = currentCourse.getDiscipline().trim(); //check if has the discipline (can  not be null cause is empty by default)
+                String courseDiscipline = currentCourse.getDiscipline(); //check if the course has the discipline (can  not be null cause is empty by default)
+
                 Course courseAffected = new Course(currentCourse);  //copy constructor to the copy of course
                 courseAffected.setNumberOfGroups((byte) 0);
 
@@ -138,7 +137,9 @@ public class Department {
                             System.out.println("prof can't have more hours: " + hoursGaveToTeacher + " hours");
                             break;
                         }
-                        System.out.println("prof can have one more group: " + courseAffected.getNumberOfGroups() + "/" + groupsRequested + " (groupsAffected/groupsRequested) for a total of " + hoursGaveToTeacher + " hours");
+                        System.out.println("prof can have one more group: " + courseAffected.getNumberOfGroups() + "/"
+                                + groupsRequested + " (groupsAffected/groupsRequested) for a total of "
+                                + hoursGaveToTeacher + " hours");
 
                         currentCourse.setNumberOfGroups((byte) (currentCourse.getNumberOfGroups() - 1));
                         courseAffected.setNumberOfGroups((byte) (courseAffected.getNumberOfGroups() + 1)); //change the number of groups and put it the affectedcourses at professor
